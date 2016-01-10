@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/pure-min.css">
+	<title>{{title}}</title>
+	<script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="build/browser.min.js"></script>
+  {{#if ENV_DEVELOPMENT}}
+    <script src="http://localhost:35729/livereload.js"></script>
+  {{/if}}
+</head>
+<body>
+  
+    <div class="pure-menu pure-menu-horizontal">
+       <a href="/" class="pure-menu-heading pure-menu-link">BRAND</a>
+       <ul class="pure-menu-list">
+          <li class="pure-menu-item"><a href="/users" class="pure-menu-link">Users</a></li>
+          <li class="pure-menu-item"><a href="#" class="pure-menu-link">Sports</a></li>
+          <li class="pure-menu-item"><a href="#" class="pure-menu-link">Finance</a></li>
+       </ul>
+    </div>
+
+  {{{body}}}
+
+
+  </body>
+</html>
