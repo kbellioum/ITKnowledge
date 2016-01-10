@@ -8,8 +8,8 @@ var exphbs  = require('express-handlebars');
 
 var routes = require('./routes/index');
 var users = require('./routes/user');
-var login = require('/routes/login');
-var contact = require('/routes/contact');
+var login = require('./routes/login');
+var contact = require('./routes/contact');
 
 var app = express();
 
