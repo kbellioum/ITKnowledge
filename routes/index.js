@@ -4,7 +4,7 @@ var router = express.Router();
 /* GET home page. */
 
 router.get('/', function(req, res) {
-  res.render('index', { title: 'My React Project', name: 'test pass' });
+  res.render('index', { title: 'Home Page', name: 'Via React plugin' });
 });
 
 module.exports = router;
