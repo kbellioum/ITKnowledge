@@ -3,36 +3,45 @@
 
 
 <h1>{{title}}</h1>
+<div class="container">
+
+
+    <div class="content">
+        <table class="table table-hover">
+              <thead>
+                  <tr>
+                     <th>Name</th>
+                     <th>Birthdate</th>
+                     <th>Father Name</th>
+                  </tr>
+              </thead>
+                  <tbody>
+                  {{#each parents}}
+                    <tr>
+                    <td>{{this.name}}</td>
+                    <td>{{this.birthdate}}</td>
+                    <td>{{this.father}}</td>
+                    </tr>
+                  {{/each}}
+              </tbody>
+        </table>
+    </div>
+</div>
 
 <div id="example"></div>
 
-<script type="text/babel">     
+<script type="text/babel">
     var CommentBox = React.createClass({
-        								handleCommentSubmit: function(comment) {
-										    $.ajax({
-										      url: this.props.url,
-										      dataType: 'json',
-										      type: 'POST',
-										      data: comment,
-										      success: function(data) {
-										        this.setState({data: data});
-										      }.bind(this),
-										      error: function(xhr, status, err) {
-										        console.error(this.props.url, status, err.toString());
-										      }.bind(this)
-										    });
-										  },
-
-
         								render: function() {
                              								return (
                                       								<div className="commentBox">
                                        								   <h1>{{name}}!</h1>
+                                                         <p>{{title}}</p>
                                       								</div>
                                     								);
                             								}
                             			});
-    ReactDOM.render(        
+    ReactDOM.render(
         			<CommentBox />,
         			document.getElementById('example')
       				);
