@@ -3,6 +3,11 @@
 
 
 <h1>{{title}}</h1>
+
+<p>{{parents}}</p>
+
+
+<!--
 <div class="container">
 
 
@@ -28,21 +33,101 @@
     </div>
 </div>
 
+<div class="row">
+  {{#each parents}}
+      <div class="col-md-4 text-center">
+          <div class="thumbnail">
+              <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+              <div class="caption">
+                  <h3>{{this.name}}<br>
+                      <small>{{this.father}}</small>
+                      <small>{{this.birthdate}}</small>
+                  </h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt maxime.</p>
+                  <ul class="list-inline">
+                      <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
+                      </li>
+                      <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                      </li>
+                      <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+{{/each}}
+
+</div>
+
+-->
+
 <div id="example"></div>
 
 <script type="text/babel">
+    var data = [
+    {id: 1, author: "Karim Bellioum", text: "C'est moi  bla bla"},
+    {id: 2, author: "Mohamed Agouzoul", text: "C'est moi bla bla bla"}
+    ];
+    var CommentList = React.createClass({
+      render: function() {
+        var commentNodes = this.props.data.map(function(comment) {
+              return (
+                <Comment author={comment.author} key={comment.id}>
+                  {comment.text}
+                </Comment>
+              );
+            });
+      return (
+        <div className="commentList">
+        {commentNodes}
+        </div>
+      );
+      }
+    });
+    var CommentForm = React.createClass({
+      render: function() {
+        return (
+          <div className="commentForm">
+                <form className="commentForm">
+                  <input type="text" placeholder="Your name" />
+                  <input type="text" placeholder="Say something..." />
+                  <input type="submit" value="Post" />
+                </form>
+          </div>
+        );
+      }
+    });
+    var Comment = React.createClass({
+      rawMarkup: function() {
+        var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
+        return { __html: rawMarkup };
+      },
+      render: function() {
+        return (
+          <div className="comment">
+            <h2 className="commentAuthor">
+              {this.props.author}
+            </h2>
+            <span dangerouslySetInnerHTML={this.rawMarkup()} />
+          </div>
+        );
+      }
+    });
     var CommentBox = React.createClass({
         								render: function() {
                              								return (
                                       								<div className="commentBox">
-                                       								   <h1>{{name}}!</h1>
-                                                         <p>{{title}}</p>
+                                                            <h1>Comments</h1>
+                                                            <CommentList data={this.props.data} />
+                                                            <CommentForm />
+
                                       								</div>
                                     								);
                             								}
                             			});
+
     ReactDOM.render(
-        			<CommentBox />,
+        			<CommentBox data={data}/>,
         			document.getElementById('example')
       				);
 </script>
